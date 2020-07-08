@@ -1,18 +1,24 @@
 package com.appsbyasfar.covid19.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.ColorUtils
 import androidx.core.graphics.drawable.toBitmap
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.RecyclerView
 import com.appsbyasfar.covid19.R
+import com.appsbyasfar.covid19.activities.CountryDetailsActivity
+import com.appsbyasfar.covid19.activities.StatusFilter
 import com.appsbyasfar.covid19.models.CountryStatsModel
+import com.appsbyasfar.covid19.utils.COUNTRY
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -22,7 +28,6 @@ class HomeCountriesRecyclerViewAdapter(private val countries:List<CountryStatsMo
     RecyclerView.Adapter<HomeCountriesRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var context:Context
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         context=parent.context
@@ -46,18 +51,29 @@ class HomeCountriesRecyclerViewAdapter(private val countries:List<CountryStatsMo
                 Palette.Builder(p0?.toBitmap()!!).generate { it?.let { palette ->
                     val dominantColor = palette.getDominantColor(ContextCompat.getColor(context, R.color.colorBackground))
                     holder.tvCountry.setTextColor(dominantColor)
+                    holder.card.setCardBackgroundColor(ColorUtils.setAlphaComponent(dominantColor,30))
                 } }
                 return false
             }
         }).into(holder.ivFlag)
 
+
+
         holder.tvCountry.text=countries[position].getCountry()
         holder.tvConfirmCount.text=countries[position].getTotalConfirmed().toString()
         holder.tvRecoveredCount.text=countries[position].getTotalRecovered().toString()
         holder.tvDeathsCount.text=countries[position].getTotalDeaths().toString()
+
+        holder.card.setOnClickListener {
+            val countryDetailIntent=Intent(context,CountryDetailsActivity::class.java)
+            countryDetailIntent.putExtra(COUNTRY,countries[position])
+            context.startActivity(countryDetailIntent)
+        }
     }
 
+
     class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
+        val card:CardView= itemView as CardView
         val ivFlag: ImageView =itemView.findViewById(R.id.iv_flag)
         val tvCountry: TextView =itemView.findViewById(R.id.tv_country_name)
         val tvConfirmCount: TextView =itemView.findViewById(R.id.tv_country_confirmed_count)

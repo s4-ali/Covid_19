@@ -49,7 +49,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/status_border_confirmed"
+        android:background="@drawable/status_confirmed_bg"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:paddingTop="8dp"
@@ -68,7 +68,6 @@
             android:layout_height="35dp"
             android:contentDescription="@string/str_icon" />
         <TextView
-            android:layout_marginEnd="16dp"
             android:textStyle="bold"
             android:textSize="16sp"
             android:layout_marginStart="16dp"
@@ -83,7 +82,7 @@
             android:layout_height="wrap_content"
             android:baselineAligned="false">
             <LinearLayout
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="24dp"
                 android:orientation="vertical"
                 android:gravity="center"
                 android:layout_weight="0.5"
@@ -130,7 +129,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/status_border_recovered"
+        android:background="@drawable/status_recovered_bg"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:paddingTop="8dp"
@@ -149,7 +148,6 @@
             android:layout_height="35dp"
             android:contentDescription="@string/str_icon" />
         <TextView
-            android:layout_marginEnd="16dp"
             android:textStyle="bold"
             android:textSize="16sp"
             android:layout_marginStart="16dp"
@@ -164,7 +162,7 @@
             android:layout_height="wrap_content"
             android:baselineAligned="false">
             <LinearLayout
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="24dp"
                 android:orientation="vertical"
                 android:gravity="center"
                 android:layout_weight="0.5"
@@ -211,7 +209,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/status_border_deaths"
+        android:background="@drawable/status_deaths_bg"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:paddingTop="8dp"
@@ -245,7 +243,7 @@
             android:layout_height="wrap_content"
             android:baselineAligned="false">
             <LinearLayout
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="24dp"
                 android:orientation="vertical"
                 android:gravity="center"
                 android:layout_weight="0.5"
@@ -307,6 +305,7 @@
             android:layout_height="wrap_content"
             tools:ignore="RelativeOverlap" />
         <ImageView
+            android:visibility="invisible"
             android:onClick="onClickAllCountries"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_list_view"
